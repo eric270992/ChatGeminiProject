@@ -1,0 +1,22 @@
+<div class="container chat-container">
+  <div class="row">
+    <div class="col-12">
+      <div class="chat-header">
+        <img class="img-responsive" src="../assets/img/EIO_logo.png" alt="Logo" class="logo">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="chat-messages">
+      <div *ngFor="let msg of messages" [ngClass]="{'my-message': msg.sender === 'me', 'other-message': msg.sender === 'bot'}">
+        {{ msg.text }}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input (keydown)="keyDown($event)" type="text" [(ngModel)]="newMessage" placeholder="Escriu un missatge...">
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+.chat-container {
+    max-width: 700px;
+    height: 90vh; /* Ajustem la mida del xat */
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 2.5rem;
+}
+
+.chat-header {
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 🔹 Contenidor dels missatges amb scroll */
+.chat-messages {
+    flex: 1; /* Ocupa tot l'espai disponible */
+    padding: 15px;
+    overflow-y: auto; /* Activa el scroll vertical */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(90vh - 120px); /* Ajust per no sobrepassar el contenidor */
+}
+
+/* Missatges */
+.my-message {
+    align-self: flex-end;
+    background: #007bff;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 75%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.other-message {
+    align-self: flex-start;
+    background: #e9ecef;
+    color: black;
+    padding: 12px 16px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 75%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Input fixat a la part inferior */
+.chat-input {
+    display: flex;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Estils de l'input */
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background: #f1f1f1;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+/* Botó d'enviament */
+.chat-input button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.chat-input button:hover {
+    background: #0056b3;
+}

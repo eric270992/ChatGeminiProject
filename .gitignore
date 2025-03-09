@@ -1,0 +1,12 @@
+# Angular
+node_modules/
+dist/
+.angular/
+
+# .NET
+bin/
+obj/
+.vs/
+
+# Secrets i configuracions locals
+appsettings.secrets.json
