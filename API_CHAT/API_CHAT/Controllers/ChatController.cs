@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using API_CHAT.DTO;
 using AutoGen.Gemini;
 using AutoGen.Core;
+using Google.Cloud.AIPlatform.V1;
 
 namespace API_CHAT.Controllers
 {
@@ -19,13 +20,20 @@ namespace API_CHAT.Controllers
     {
         private string ApiKey = "";
         private string ApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=";
-        private readonly string SystemPrompt = "Ets un assistent virtual útil i concís que respon en català." +
+        private readonly string SystemPromptBasic = "Ets un assistent virtual útil i concís que respon en català." +
             " El teu public són alumnes d'un institut. " +
             "Només pots contestar pensant en que són alumnes, no es poden donar respostes inapropiades."; // Prompt del sistema
         MiddlewareStreamingAgent<GeminiChatAgent> agent;
 
         public ChatController(IConfiguration _configuration)
         {
+            string SystemPrompt = "";
+
+            using(StreamReader sr = new StreamReader("./Recursos/SystemPrompt.txt"))
+            {
+                SystemPrompt = sr.ReadToEnd();
+            }
+
             ApiKey = _configuration["ApiKey"] ?? throw new ArgumentNullException("API key is missing");
             ApiUrl += ApiKey;
 
@@ -53,7 +61,7 @@ namespace API_CHAT.Controllers
                     new
                     {
                         parts = new[] {
-                            new { text = SystemPrompt },
+                            new { text = SystemPromptBasic },
                             new { text = pregunta }
 
                         }
